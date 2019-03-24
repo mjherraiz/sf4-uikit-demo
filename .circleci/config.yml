@@ -44,7 +44,7 @@ jobs:
       # prepare the database
       - run: touch db/data.db
       #- run: php artisan migrate --env=testing --database=sqlite_testing --force
-
+      - run: yarn encore production
       # run tests with phpunit or codecept
       - run: ./bin/phpunit
       #- run: ./vendor/bin/codecept build
