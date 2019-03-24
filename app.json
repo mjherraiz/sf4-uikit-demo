@@ -1,0 +1,40 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "description": "sf4-uikit-demo",
+  "env": {
+    "APP_ENV": {
+      "required": true
+    },
+    "APP_SECRET": {
+      "required": true
+    },
+    "BASE_URL": {
+      "required": true
+    },
+    "HOST": {
+      "required": true
+    },
+    "SCHEME": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "sf4-uikit-demo",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
