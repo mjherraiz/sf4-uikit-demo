@@ -8,8 +8,7 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:7.3-node-browsers
-    environment:
-      APP_ENV: test
+
 
       
     steps:
@@ -17,6 +16,11 @@ jobs:
 
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
+      - run: 
+          name: "Setup custom environment variables"
+          command: |
+            echo 'export MY_ENV_VAR="FOO"' >> $BASH_ENV
+
 
       # Download and cache dependencies
       - restore_cache:
