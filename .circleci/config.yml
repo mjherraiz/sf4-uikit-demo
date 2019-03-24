@@ -39,10 +39,3 @@ jobs:
       # run tests with phpunit or codecept
       - run: ./bin/phpunit
 
-deploy:
-    executor: heroku/default
-    steps:
-      - checkout
-      - heroku/install
-      - heroku/deploy-via-git:
-          only-branch: master
