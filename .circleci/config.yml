@@ -8,8 +8,8 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:7.3-node-browsers
-      - environment:
-        APP_ENV: test
+    environment:
+      APP_ENV: test
 
       
     steps:
