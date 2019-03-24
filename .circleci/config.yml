@@ -20,7 +20,9 @@ jobs:
           name: "Setup custom environment variables"
           command: |
             echo 'export APP_ENV="test"' >> $BASH_ENV
-
+      - run:
+          name: "What was my custom environment variable?"
+          command: echo ${APP_ENV}
 
       # Download and cache dependencies
       - restore_cache:
