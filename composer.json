@@ -62,6 +62,9 @@
         }
     },
     "require-dev": {
+        "allocine/twigcs": "^3.1",
+        "friendsofphp/php-cs-fixer": "^2.14",
+        "squizlabs/php_codesniffer": "*",
         "symfony/maker-bundle": "^1.11",
         "symfony/phpunit-bridge": "4.2.*"
     }
