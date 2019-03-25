@@ -2,22 +2,20 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Gedmo\Blameable\Traits\BlameableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Table(name="user")
+ /**
  * @Vich\Uploadable
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @ORM\Entity(repositoryClass="App\Repository\AdvertisingRepository")
  */
-class User implements UserInterface
+class Advertising
 {
     /**
     * Hook blameable behavior
@@ -36,32 +34,21 @@ class User implements UserInterface
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     /**
+     * @Assert\Length(max="255")
+     * @ORM\Column(type="string", length=255)
      */
-    private $email;
+    private $title;
 
     /**
-     * @ORM\Column(type="json_array")
+     * @Assert\Length(max="255")
+     * @ORM\Column(type="string", length=255)
      */
-    private $roles = [];
-
-    /**
-     * @Assert\Length(
-     *      min = 6,
-     *      minMessage = "min-6-char",
-     *      max = 4096,
-     *      maxMessage = "max-4096-char",
-     * )
-     *
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
-    private $password;
+    private $body;
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="user_images", fileNameProperty="imageName", size="imageSize")
+     * @Vich\UploadableField(mapping="ads_images", fileNameProperty="imageName", size="imageSize")
      *
      * @var File
      */
@@ -73,84 +60,74 @@ class User implements UserInterface
      * @var string
      */
     private $imageName;
+
+    /**
+     * @ORM\Column(type="integer" , nullable=true)
+     *
+     * @var integer
+     */
+    private $imageSize;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $published;
+
+    /**
+     * @var Tag[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", cascade={"persist"})
+     * @ORM\JoinTable(name="advertising_tag")
+     * @ORM\OrderBy({"name": "ASC"})
+     * @Assert\Count(max="4", maxMessage="advertising.too_many_tags")
+     */
+    private $tags;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    public function getTitle(): ?string
     {
-        return $this->email;
+        return $this->title;
     }
 
-    public function setEmail(string $email): self
+    public function setTitle(string $title): self
     {
-        $this->email = $email;
+        $this->title = $title;
 
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUsername(): string
+    public function getBody(): ?string
     {
-        return (string) $this->email;
+        return $this->body;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
+    public function setBody(string $body): self
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
+        $this->body = $body;
 
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getPassword(): string
+    public function getPublished(): ?bool
     {
-        return (string) $this->password;
+        return $this->published;
     }
 
-    public function setPassword(string $password): self
+    public function setPublished(?bool $published): self
     {
-        $this->password = $password;
+        $this->published = $published;
 
         return $this;
     }
-
     /**
-     * @see UserInterface
-     */
-    public function getSalt()
-    {
-        // not needed when using the "bcrypt" algorithm in security.yaml
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
-        /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
      * of 'UploadedFile' is injected into this setter to trigger the update. If this
      * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
@@ -193,5 +170,21 @@ class User implements UserInterface
     public function getImageSize(): ?int
     {
         return $this->imageSize;
+    }
+    public function addTag(Tag ...$tags): void
+    {
+        foreach ($tags as $tag) {
+            if (!$this->tags->contains($tag)) {
+                $this->tags->add($tag);
+            }
+        }
+    }
+    public function removeTag(Tag $tag): void
+    {
+        $this->tags->removeElement($tag);
+    }
+    public function getTags(): Collection
+    {
+        return $this->tags;
     }
 }
