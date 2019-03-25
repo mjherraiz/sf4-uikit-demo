@@ -15,7 +15,7 @@ class UserSubscriber implements EventSubscriberInterface
     {
         $this->encoder = $encoder;
     }
-    public function onEasyAdminPrePersist($event)
+    public function encodeUserPassword($event)
     {
         $entity = $event->getSubject();
 
@@ -31,7 +31,8 @@ class UserSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-           'easy_admin.pre_persist' => 'onEasyAdminPrePersist',
+           'easy_admin.pre_persist' => 'encodeUserPassword',
+           'easy_admin.pre_update' => 'encodeUserPassword',
         ];
     }
 }
