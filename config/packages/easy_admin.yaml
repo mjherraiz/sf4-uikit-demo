@@ -1,0 +1,27 @@
+easy_admin:
+    site_name: 'Backend'
+    user:
+        display_name: true
+        display_avatar: true
+        name_property_path: 'username'
+        avatar_property_path: 'gravatar'
+    entities:
+        User:
+            class: App\Entity\User
+            list:
+                title: 'User'
+                actions: ['new']
+                fields:
+                    - { property: 'id' }
+                    - { property: 'email' ,type: 'email'}
+                    - { property: 'roles' }
+            new:
+                fields:
+                    - { property: 'email' ,type: 'email'}
+                    - { property: 'password',type: 'password' }
+                    - { property: 'roles' }
+            edit:
+                fields:
+                    - { property: 'email' ,type: 'email'}
+                    - { property: 'roles' }     
+

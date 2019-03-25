@@ -29,3 +29,4 @@ yarn-error.log
 ###< friendsofphp/php-cs-fixer ###
 .history/
 .vscode
+/db/data.db
