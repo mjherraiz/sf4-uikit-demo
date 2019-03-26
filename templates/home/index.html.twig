@@ -2,11 +2,11 @@
 {% block title %}Hello PageController!
 {% endblock %}
 {% block body %}
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {# {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <a href="{{ path('app_logout') }}">Logout</a>
     {% else %}
         <a href="{{ path('app_login') }}">Login</a>
-    {% endif %}
+    {% endif %} #}
     <div uk-filter="target: .js-filter">
         <ul class="uk-subnav uk-subnav-pill">
             <li class="uk-active" uk-filter-control="[data-tags*='all']">
