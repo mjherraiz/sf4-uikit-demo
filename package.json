@@ -13,6 +13,7 @@
         "heroku-postbuild": "encore production --progress"
     },
     "dependencies": {
-        "core-js": "^2.0.0"
+        "core-js": "^2.0.0",
+        "uikit": "^3.0.3"
     }
 }
