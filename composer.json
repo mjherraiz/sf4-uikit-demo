@@ -53,8 +53,7 @@
             "doctrine:migration:migrate --no-interaction" : "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts",
-            "app:populate"
+            "@auto-scripts"
 
         ],
         "post-update-cmd": [
