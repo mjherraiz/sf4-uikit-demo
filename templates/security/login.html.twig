@@ -2,8 +2,8 @@
 {% block body %}
     <form class="uk-form uk-width-2-3 uk-align-center" method="post">
         {% if error %}
-            <div class="uk-alert uk-alert-danger">
-                <a class="uk-alert-close uk-close" href=""></a>
+            <div uk-alert class="uk-alert-danger">
+                <button class="uk-alert-close" type="button" uk-close></button>
                 <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
             </div>
         {% endif %}
