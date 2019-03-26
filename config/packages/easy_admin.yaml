@@ -29,7 +29,6 @@ easy_admin:
             edit:
                 fields:
                     - { property: 'email' ,type: 'email'}
-                    - { property: 'password',type: 'password' }
                     - { property: 'imageFile', type: 'vich_image' }
                     - { property: 'roles' }     
         Advertising:

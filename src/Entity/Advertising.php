@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Blameable\Traits\BlameableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
  /**
  * @Vich\Uploadable
- * @ORM\Entity(repositoryClass="App\Repository\AdvertisingRepository")
+ * @ORM\Entity()
  */
 class Advertising
 {
@@ -171,6 +171,7 @@ class Advertising
     {
         return $this->imageSize;
     }
+    
     public function addTag(Tag ...$tags): void
     {
         foreach ($tags as $tag) {
@@ -183,7 +184,7 @@ class Advertising
     {
         $this->tags->removeElement($tag);
     }
-    public function getTags(): Collection
+    public function getTags():Collection
     {
         return $this->tags;
     }
