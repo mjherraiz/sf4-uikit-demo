@@ -25,7 +25,7 @@
                         {% if vich_uploader_asset(add, 'imageFile') is not empty %}
                             <div class="uk-card-media-top">
                                 <div class="uk-thumbnail uk-thumbnail-small">
-                                    <img class="uk-thumbnail uk-thumbnail-small" src="{{ vich_uploader_asset(add, 'imageFile') }}"/>
+                                    <img class="uk-thumbnail uk-thumbnail-small" src="{{ vich_uploader_asset(add, 'imageFile')|imagine_filter('thumbnail') }}"/>
                                 </div>
                             </div>
                         {% endif %}

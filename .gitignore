@@ -30,3 +30,7 @@ yarn-error.log
 .history/
 .vscode
 /db/data.db
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###

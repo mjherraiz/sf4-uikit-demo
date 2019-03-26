@@ -2,10 +2,12 @@
 {% block title %}Hello PageController!
 {% endblock %}
 {% block body %}
+    <hr class="uk-divider-icon"/>
     <section class="uk-section uk-section-small uk-section-default uk-padding-remove-bottom">
         {% include './elements/slider/index.html.twig' %}
     </section>
-    <section class="uk-section uk-section-small uk-section-default uk-padding-remove-bottom">
-        {% include './elements/cards/index.html.twig' %}
-    </section>
+    <hr class="uk-divider-icon"/>
+        <section class="uk-section uk-section-small uk-section-default uk-padding-remove-bottom">
+            {% include './elements/cards/index.html.twig' %}
+        </section>
 {% endblock %}
