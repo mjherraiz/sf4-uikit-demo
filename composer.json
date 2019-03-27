@@ -54,7 +54,7 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "liip:imagine:cache:remove": "symfony-cmd",
-            "chmod 777 -Rf var": "symfony-cmd"
+            "chmod -Rf 777 var/"
         },
         "post-install-cmd": [
             "@auto-scripts"
