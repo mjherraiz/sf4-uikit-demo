@@ -22,15 +22,6 @@
     },
     "APP_SECRET": {
       "required": true
-    },
-    "BASE_URL": {
-      "required": true
-    },
-    "HOST": {
-      "required": true
-    },
-    "SCHEME": {
-      "required": true
     }
   },
   "formation": {
