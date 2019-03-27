@@ -32,5 +32,9 @@ yarn-error.log
 /db/data.db
 
 ###> liip/imagine-bundle ###
-/public/media/cache/
+public/media/cache/gallery/images/ads/*
+!public/media/cache/gallery/images/ads/.gitkeep
+public/media/cache/thumbnail/images/ads/*
+!public/media/cache/thumbnail/images/ads/.gitkeep
 ###< liip/imagine-bundle ###
+

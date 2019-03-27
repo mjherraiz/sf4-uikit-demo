@@ -56,8 +56,7 @@
             "liip:imagine:cache:remove": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts",
-            "chmod -Rf 777 var/"
+            "@auto-scripts"
         ],
         "post-update-cmd": [
             "@auto-scripts"
