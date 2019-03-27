@@ -15,7 +15,7 @@ class PageController extends AbstractController
     public function index()
     {
         $repository = $this->getDoctrine()->getRepository(Advertising::class);
-        $ads = $repository->findBy([]);
+        $ads = $repository->findBy(['published'=>true]);
         $repository = $this->getDoctrine()->getRepository(Tag::class);
         $tags = $repository->findAll();
         return $this->render('home/index.html.twig', [

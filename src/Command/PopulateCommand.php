@@ -11,8 +11,11 @@ use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Advertising;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Faker;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 class PopulateCommand extends ContainerAwareCommand
 {
@@ -34,7 +37,7 @@ class PopulateCommand extends ContainerAwareCommand
         
         $admin=$this->createUser(true);
         $entityManager->persist($admin);
-        for ($i=1; $i < 100; $i++) {
+        for ($i=1; $i < 5; $i++) {
             $user=$this->createUser();
             $entityManager->persist($user);
         }
@@ -44,10 +47,18 @@ class PopulateCommand extends ContainerAwareCommand
             $entityManager->persist($tag);
         }
         $entityManager->flush();
+        $projectRoot = $this->getContainer()->get('kernel')->getProjectDir();
+        $fileSystem = new Filesystem();
         $tags = $this->getContainer()->get('doctrine')->getRepository(Tag::class)->findAll();
-        for ($i=1; $i < 100; $i++) {
+        for ($i=1; $i < 10; $i++) {
             $advertising=$this->createAdvertising();
             $advertising->setPublished(false);
+            $filePath=$projectRoot.'/db/images/'.sha1(rand()).'.jpg';
+            $copyFile = $fileSystem->copy($projectRoot.'/db/images/test.jpg', $filePath);
+            $file = new UploadedFile($filePath, $filePath, null, null, true);
+            $advertising->setPublished(true);
+            $advertising->setImageName('test.jpg');
+            $advertising->setImageFile($file);
             shuffle($tags);
             $randomTags=array_slice($tags, 0, rand(1, 4));
             foreach ($randomTags as $tag) {
