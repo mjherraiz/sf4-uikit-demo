@@ -70,12 +70,15 @@ easy_admin:
                 fields:
                     - { property: 'id' }
                     - { property: 'name' }
+                    - { property: 'color' }
 
             new:
                 fields:
                     - { property: 'name' }
+                    - { property: 'color', type: 'color' }
             edit:
                 fields:
                     - { property: 'name' }
+                    - { property: 'color' , type: 'color'}
 
 

@@ -25,6 +25,11 @@ class Tag implements \JsonSerializable
      * @ORM\Column(type="string", unique=true)
      */
     private $name;
+
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $color;
     
     public function getId(): ?int
     {
@@ -48,5 +53,17 @@ class Tag implements \JsonSerializable
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
     }
 }

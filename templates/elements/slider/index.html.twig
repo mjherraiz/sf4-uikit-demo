@@ -1,12 +1,12 @@
 <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="clsActivated: uk-transition-active; center: true">
-    <ul class="uk-slider-items uk-grid">
+    <ul class="uk-slider-items uk-grid" >
         {% for add in ads %}
             <li class="uk-width-3-4">
                 <div class="uk-panel">
                     <img src="{{ vich_uploader_asset(add, 'imageFile')|imagine_filter('gallery') }}" alt="{{ add.title }}"/>
                         <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-transition-slide-bottom">
-                            <h3 class="uk-margin-remove">{{ add.title }}</h3>
-                            <p class="uk-margin-remove">{{ add.body }}</p>
+                            <h3 class="uk-margin-remove">{{ add.title|slice(0, 40) }}</h3>
+                            <p class="uk-margin-remove uk-visible@s" >{{ add.body }}</p>
                         </div>
                     </div>
                 </li>
