@@ -55,8 +55,8 @@
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts"
-
+            "@auto-scripts",
+            "liip:imagine:cache:remove"
         ],
         "post-update-cmd": [
             "@auto-scripts"
