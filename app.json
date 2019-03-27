@@ -1,4 +1,9 @@
 {
+  "name": "Sf4 +UIKit Demo",
+  "description": "Sf4 +UIKit Demo",
+  "repository": "https://github.com/mjherraiz/sf4-uikit-demo.git",
+  "logo": "",
+  "keywords": ["php"],
   "addons": [
 
   ],
@@ -33,7 +38,6 @@
       "quantity": 1
     }
   },
-  "name": "sf4-uikit-demo",
   "scripts": {
   },
   "stack": "heroku-18"
